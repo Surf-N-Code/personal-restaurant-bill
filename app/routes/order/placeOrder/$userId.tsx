@@ -1,8 +1,8 @@
 import { Form, useLoaderData } from "@remix-run/react";
 import { getUser } from "~/models/users.server";
-import type { OrderPosition, Position } from "~/models/position.server";
+import type { PositionWithProduct } from "~/models/position.server";
 import { createPosition, getPositions } from "~/models/position.server";
-import type { LoaderFunction } from "@remix-run/node";
+import type { ActionFunction, LoaderFunction } from "@remix-run/node";
 import { json, redirect } from "@remix-run/node";
 import invariant from "tiny-invariant";
 import type { User } from "~/models/users.server";
@@ -19,12 +19,11 @@ type LoaderData = {
   products: Product[];
 }
 
-const getTotalForUser = (positions: Position[], user: User) => {
+const getTotalForUser = (positions: PositionWithProduct[]) => {
   if (!positions) return 0;
   let total = 0;
   positions.forEach((position) => {
-    total += Object.keys(position.products)
-      .reduce((previous, idx) => previous + position.products[idx].price, 0);
+    total += position.product.price;
   });
   return total;
 }
@@ -42,12 +41,14 @@ export const loader: LoaderFunction = async ({ params }) => {
   return json<LoaderData>({user, userBalance, products})
 }
 
-export const action = async ({ request }) => {
+export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
 
   const data = formData.get("position-details");
-  console.log('data',data);
-  await createPosition(JSON.parse(data));
+  invariant(data, "Missing form data to create position");
+  let parsed = JSON.parse(data as string);
+  if ("product" in parsed) {await createPosition(parsed);}
+  //@TODO: https://stackoverflow.com/a/62438143
 
   return redirect("/");
 };
@@ -58,11 +59,11 @@ const inputClassName = `w-full rounded border border-gray-500 px-2 py-1 text-lg`
 export default function PlaceOrder() {
   const [customProductTitle, setCustomProductTitle] = useState('');
   const [customProductPrice, setCustomProductPrice] = useState(0);
-  const [positions, setPositions] = useState<OrderPosition[] | null>();
+  const [positions, setPositions] = useState<PositionWithProduct[] | null>();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [quantity, setQuantity] = useState<number>(0);
-  const [ formData, setFormData ] = useState<string>(null);
-  const { user, userBalance, products } = useLoaderData() as LoaderData;
+  const [ formData, setFormData ] = useState<string>('');
+  const { user, userBalance, products } = useLoaderData() as unknown as LoaderData;
 
   useEffect(() => {
     if (selectedProduct === null || !positions) return;
@@ -103,13 +104,17 @@ export default function PlaceOrder() {
       const position = {
         id: uuidv4(),
         userId: user.id,
+        productId: selectedProduct.id,
         product: {
+          id: selectedProduct.id,
           price: selectedProduct.price,
           name: selectedProduct.name,
           isCustom: !!(customProductTitle && customProductPrice),
         },
         quantity,
-        totalPrice: quantity * selectedProduct.price
+        totalPrice: quantity * selectedProduct.price,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       }
       setPositions(positions => positions ? [...positions, position]: [position]);
     }
@@ -201,7 +206,7 @@ export default function PlaceOrder() {
               <div className={"font-bold"}>Preis</div>
               <div className={"font-bold"}>Total</div>
               <div></div>
-              {positions && positions.map((position: OrderPosition) => (
+              {positions && positions.map((position: PositionWithProduct) => (
                 <React.Fragment key={position.product.id}>
                   <div>{position.product.name}</div>
                   <div>{position.quantity}</div>

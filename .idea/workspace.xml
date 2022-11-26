@@ -4,21 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="677b613e-84d5-4110-8934-c634a5b3878e" name="Changes" comment="chore: install clsx, uuid, tiny-invariant">
-      <change afterPath="$PROJECT_DIR$/app/models/position.server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models/product.server.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routes/order/placeOrder/$userId.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/prisma/migrations/20221122151146_/migration.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/prisma/migrations/20221122234730_quantity/migration.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/prisma/migrations/20221122234823_default_0_quantity/migration.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/prisma/migrations/migration_lock.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="677b613e-84d5-4110-8934-c634a5b3878e" name="Changes" comment="fix: types">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/note.server.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/position.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/position.server.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/users.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/users.server.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/users/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/join.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/join.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/notes.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes/order/placeOrder/$userId.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/order/placeOrder/$userId.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/seed.ts" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/seed.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +41,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "app.teamhub.trackedBranches": "",
+    "app.teamhub.trackedBranches": "1l7v489/dev",
     "last_opened_file_path": "/Users/norman/dev/sassa/app/models",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
@@ -89,7 +84,7 @@
       <workItem from="1669125930985" duration="23882000" />
       <workItem from="1669208669186" duration="3048000" />
       <workItem from="1669293170467" duration="724000" />
-      <workItem from="1669381191003" duration="11527000" />
+      <workItem from="1669381191003" duration="17622000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1669069888540</created>
@@ -119,7 +114,28 @@
       <option name="project" value="LOCAL" />
       <updated>1669392838565</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="chore: add functionality to create positions">
+      <created>1669413158454</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1669413158454</updated>
+    </task>
+    <task id="LOCAL-00006" summary="chore: disable cypress &amp; unit tests for now">
+      <created>1669413320074</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1669413320074</updated>
+    </task>
+    <task id="LOCAL-00007" summary="chore: disable cypress &amp; unit tests for now">
+      <created>1669413447049</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1669413447049</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,7 +157,10 @@
     <MESSAGE value="add Position &amp; Products model" />
     <MESSAGE value="chore: setup user, product and position models" />
     <MESSAGE value="chore: install clsx, uuid, tiny-invariant" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: install clsx, uuid, tiny-invariant" />
+    <MESSAGE value="chore: add functionality to create positions" />
+    <MESSAGE value="chore: disable cypress &amp; unit tests for now" />
+    <MESSAGE value="fix: types" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: types" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

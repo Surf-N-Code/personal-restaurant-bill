@@ -15,7 +15,7 @@ export const loader = async () => {
 
 
 export default function Index() {
-  const { users } = useLoaderData() as LoaderData;
+  const { users } = useLoaderData() as unknown as LoaderData;
   return (
     <main>
       <section className={"grid grid-cols-5 px-4"}>
