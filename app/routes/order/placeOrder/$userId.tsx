@@ -37,7 +37,7 @@ export const loader: LoaderFunction = async ({ params }) => {
   const products = await getProducts();
   invariant(products, `No products found`);
 
-  const userBalance = getTotalForUser(positions, user);
+  const userBalance = getTotalForUser(positions);
   return json<LoaderData>({user, userBalance, products})
 }
 

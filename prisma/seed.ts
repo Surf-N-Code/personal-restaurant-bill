@@ -22,35 +22,29 @@ async function seed() {
           {
             createdAt: new Date(),
             updatedAt: new Date(),
-            products: {
-              create: [
+            quantity: 2,
+            product: {
+              create:
                 {
                   name: "Cola",
                   price: 4,
                 },
-                {
-                  name: "Wine",
-                  price: 33,
-                }
-              ]
             },
+            totalPrice: 8
           },
           {
             createdAt: new Date(),
             updatedAt: new Date(),
-            products: {
-              create: [
+            quantity: 1,
+            product: {
+              create:
                 {
-                  name: "Fanta",
-                  price: 5,
+                  name: "Weißwein",
+                  price: 33,
                 },
-                {
-                  name: "Water",
-                  price: 7,
-                }
-              ]
             },
-          }
+            totalPrice: 33
+          },
         ],
       }
     },
@@ -70,22 +64,19 @@ async function seed() {
           {
             createdAt: new Date(),
             updatedAt: new Date(),
-            products: {
-              create: [
+            quantity: 1,
+            product: {
+              create:
                 {
                   name: "Cola",
                   price: 4,
                 },
-                {
-                  name: "Fanta",
-                  price: 3,
-                },
-              ]
             },
-          }
+            totalPrice: 4
+          },
         ],
       }
-    },
+    }
   });
 
   console.log(`Database has been seeded. 🌱`);
