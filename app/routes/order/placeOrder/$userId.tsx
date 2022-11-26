@@ -22,8 +22,9 @@ type LoaderData = {
 const getTotalForUser = (positions: PositionWithProduct[]) => {
   if (!positions) return 0;
   let total = 0;
+  console.log(positions);
   positions.forEach((position) => {
-    total += position.product.price;
+    total += position.totalPrice;
   });
   return total;
 }
@@ -47,7 +48,7 @@ export const action: ActionFunction = async ({ request }) => {
   const data = formData.get("position-details");
   invariant(data, "Missing form data to create position");
   let parsed = JSON.parse(data as string);
-  if ("product" in parsed) {await createPosition(parsed);}
+  if ("product" in parsed[0]) {await createPosition(parsed);}
   //@TODO: https://stackoverflow.com/a/62438143
 
   return redirect("/");
